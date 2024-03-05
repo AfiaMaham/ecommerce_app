@@ -1,5 +1,4 @@
 import 'package:ecommerce_app/helpers/constants.dart';
-import 'package:ecommerce_app/widget/cartContainer.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sizer/sizer.dart';
@@ -12,6 +11,10 @@ class DetailProduct extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     AppController controller = Get.put(AppController());
+
+    var sizes = [37, 38, 39, 40, 41, 42];
+    var selectedSize = sizes[0].obs;
+
     return Scaffold(
       backgroundColor: AppColor.black,
       body: SafeArea(
@@ -19,19 +22,20 @@ class DetailProduct extends StatelessWidget {
           children: [
             Container(
                 height: 45.h,
-                width: MediaQuery.of(context).size.width,
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10),
-                    color: AppColor.lightBlack),
+                width: MediaQuery
+                    .of(context)
+                    .size
+                    .width,
+                decoration: BoxDecoration(borderRadius: BorderRadius.circular(10), color: AppColor.lightBlack),
                 child: Column(
                   children: [
                     Stack(
                       children: [
                         Container(
-                                decoration: BoxDecoration(
-                                    color: AppColor.whiteColor,
-                                    shape: BoxShape.circle),
-                                child: Icon(Icons.arrow_back))
+                            decoration: BoxDecoration(
+                                color: AppColor.whiteColor,
+                                shape: BoxShape.circle),
+                            child: Icon(Icons.arrow_back))
                             .paddingOnly(top: 2.h),
                         Image.asset(
                           "assets/images/shoes.png",
@@ -121,15 +125,21 @@ class DetailProduct extends StatelessWidget {
                           ),
                         ]).paddingOnly(top: 1.h),
                     Container(
-                      height: MediaQuery.of(context).size.height * 0.4,
-                      width: MediaQuery.of(context).size.width,
+                      height: MediaQuery
+                          .of(context)
+                          .size
+                          .height * 0.4,
+                      width: MediaQuery
+                          .of(context)
+                          .size
+                          .width,
                       child: TabBarView(
                         children: [
                           Column(
                             children: [
                               Row(
                                 mainAxisAlignment:
-                                    MainAxisAlignment.spaceAround,
+                                MainAxisAlignment.spaceAround,
                                 children: [
                                   Text(
                                     controller.companyName!,
@@ -180,132 +190,39 @@ class DetailProduct extends StatelessWidget {
                                       fontSize: 15.sp),
                                 ),
                               ).paddingOnly(left: 6.w),
-                              Row(
-                                children: [
-                                  GestureDetector(
-                                    onTap:(){
-                                      controller.change.value = ! controller.change.value;
-                                      controller.changeColor();
-                                    },
-
-                                    child: Container(
-                                      height: 6.h,
-                                      width: 11.w,
-                                      decoration: BoxDecoration(
-                                        color: controller.black,
-                                        shape: BoxShape.circle,
-                                      ),
-                                      child: Center(
-                                        child: Text(
-                                          "37",
-                                          style: TextStyle(
-                                              fontSize: 13.sp,
-                                              fontWeight: FontWeight.w500,
-                                              color: AppColor.whiteColor),
+                              Obx(() {
+                                return Row(
+                                  children: sizes
+                                      .map(
+                                        (e) =>
+                                        GestureDetector(
+                                          onTap: () {
+                                            selectedSize.value = e;
+                                          },
+                                          child: Container(
+                                            height: 6.h,
+                                            width: 11.w,
+                                            decoration: BoxDecoration(
+                                              color: selectedSize.value == e ? Colors.blue : Colors.black,
+                                              shape: BoxShape.circle,
+                                            ),
+                                            child: Center(
+                                              child: Text(
+                                                e.toString(),
+                                                style: TextStyle(fontSize: 13.sp, fontWeight: FontWeight.w500, color: AppColor.whiteColor),
+                                              ),
+                                            ),
+                                          ).paddingOnly(left: 5.w),
                                         ),
-                                      ),
-                                    ).paddingOnly(left: 5.w),
-                                  ),
-
-                                  GestureDetector(
-                                    onTap:(){
-                                      controller.change.value = ! controller.change.value;
-                                      controller.changeColor();
-                                    },
-                                    child: Container(
-                                      height: 6.h,
-                                      width: 11.w,
-                                      decoration: BoxDecoration(
-                                        color: controller.black,
-                                        shape: BoxShape.circle,
-                                      ),
-                                      child: Center(
-                                        child: Text(
-                                          "38",
-                                          style: TextStyle(
-                                              fontSize: 13.sp,
-                                              fontWeight: FontWeight.w500,
-                                              color: AppColor.whiteColor),
-                                        ),
-                                      ),
-                                    ).paddingOnly(left: 3.w),
-                                  ),
-                                  GestureDetector(
-                                    onTap:(){
-                                      controller.change.value = ! controller.change.value;
-                                      controller.changeColor();
-                                    },
-                                    child: Container(
-                                      height: 6.h,
-                                      width: 11.w,
-                                      decoration: BoxDecoration(
-                                        color: controller.black,
-                                        shape: BoxShape.circle,
-                                      ),
-                                      child: Center(
-                                        child: Text(
-                                          "39",
-                                          style: TextStyle(
-                                              fontSize: 13.sp,
-                                              fontWeight: FontWeight.w500,
-                                              color: AppColor.whiteColor),
-                                        ),
-                                      ),
-                                    ).paddingOnly(left: 3.w),
-                                  ),
-                                  GestureDetector(
-                                    onTap:(){
-                                      controller.change.value = ! controller.change.value;
-                                      controller.changeColor();
-                                    },
-                                    child: Container(
-                                      height: 6.h,
-                                      width: 11.w,
-                                      decoration: BoxDecoration(
-                                        color: controller.black,
-                                        shape: BoxShape.circle,
-                                      ),
-                                      child: Center(
-                                        child: Text(
-                                          "40",
-                                          style: TextStyle(
-                                              fontSize: 13.sp,
-                                              fontWeight: FontWeight.w500,
-                                              color: AppColor.whiteColor),
-                                        ),
-                                      ),
-                                    ).paddingOnly(left: 3.w),
-                                  ),
-                                  GestureDetector(
-                                    onTap:(){
-                                      controller.change.value = ! controller.change.value;
-                                      controller.changeColor();
-                                    },
-                                    child: Container(
-                                      height: 6.h,
-                                      width: 11.w,
-                                      decoration: BoxDecoration(
-                                        color: controller.black,
-                                        shape: BoxShape.circle,
-                                      ),
-                                      child: Center(
-                                        child: Text(
-                                          "41",
-                                          style: TextStyle(
-                                              fontSize: 13.sp,
-                                              fontWeight: FontWeight.w500,
-                                              color: AppColor.whiteColor),
-                                        ),
-                                      ),
-                                    ).paddingOnly(left: 3.w),
-                                  ),
-                                ],
-                              ),
+                                  )
+                                      .toList(),
+                                );
+                              }),
 
 
                               Row(
                                 mainAxisAlignment:
-                                    MainAxisAlignment.spaceAround,
+                                MainAxisAlignment.spaceAround,
                                 children: [
                                   Column(
                                     children: [
@@ -341,7 +258,7 @@ class DetailProduct extends StatelessWidget {
                                       decoration: BoxDecoration(
                                           color: Colors.blueAccent,
                                           borderRadius:
-                                              BorderRadius.circular(30)),
+                                          BorderRadius.circular(30)),
                                       child: Center(
                                         child: Text(
                                           "Add to Cart",

@@ -15,8 +15,9 @@ class ContainerWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 32.h,
-      width: 43.w,
+      width: Get.width * .44,
+      padding: EdgeInsets.symmetric(vertical: 5, horizontal: 7),
+      margin: EdgeInsets.symmetric(vertical: 5, horizontal: 5),
       decoration: BoxDecoration(
           color: AppColor.lightBlack, borderRadius: BorderRadius.circular(10)),
       child: Column(
@@ -24,8 +25,7 @@ class ContainerWidget extends StatelessWidget {
           Stack(
             children: [
               Container(
-                height: 3.h,
-                width: 6.5.w,
+                padding: EdgeInsets.all(5),
                 decoration: BoxDecoration(
                     color: Colors.blueAccent, shape: BoxShape.circle),
                 child: Icon(
@@ -46,8 +46,7 @@ class ContainerWidget extends StatelessWidget {
               activeSize: Size.square(5.0),            ),
           ),
           Container(
-            height: 10.h,
-            width: 38.w,
+            padding: EdgeInsets.symmetric(vertical: 5, horizontal: 10),
             decoration: BoxDecoration(
                 color: AppColor.black, borderRadius: BorderRadius.circular(10)),
             child: Column(
@@ -103,8 +102,6 @@ class ContainerWidget extends StatelessWidget {
                                 builder: (context) => DetailProduct()));
                       },
                       child: Container(
-                        height: 3.h,
-                        width: 6.5.w,
                         decoration: BoxDecoration(
                           color: Colors.blueAccent,
                           shape: BoxShape.circle,
